@@ -14,24 +14,31 @@ start_of_bound = 0
 guess = new_guess(start_of_bound, end_of_bound)
 
 while guess != num:
-    if guess in guess_lst:
-        guess = new_guess(start_of_bound, end_of_bound)
+    try:
+        if guess in guess_lst:
+            guess = new_guess(start_of_bound, end_of_bound)
 
-    print(f"I think your number is {guess}")
-    guess_lst.append(guess)
-    count += 1
+        print(f"I think your number is {guess}")
+        guess_lst.append(guess)
+        print("I think I messed up.... ")
+        count += 1
 
-    txt = input("what should I do? go higher or lower? (h/l): ")
+        txt = input("what should I do? go higher or lower? (h/l): ")
 
-    if txt == "l":
-        end_of_bound = guess - 1
-        guess = new_guess(start_of_bound, end_of_bound)
+        if txt == "l":
+            end_of_bound = guess - 1
+            guess = new_guess(start_of_bound, end_of_bound)
 
-    elif txt == "h":
-        start_of_bound = guess + 1
-        guess = new_guess(start_of_bound, end_of_bound)
+        elif txt == "h":
+            start_of_bound = guess + 1
+            guess = new_guess(start_of_bound, end_of_bound)
 
-    else:
-        print("you entered a wrong input. try again")
+        else:
+            print("you entered a wrong input. try again")
 
-print(f"your number was {guess}!!")
+    except ValueError:
+        print(f"I think you are bothering me :(  \n  I am done with you... ")
+        break
+else:
+    print(f"your number was {guess}!!")
+
